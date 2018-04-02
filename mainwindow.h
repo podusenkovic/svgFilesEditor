@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <iterator>
+#include <algorithm>
 
 #include "figures.h"
 #include "widgetforbuttons.h"
@@ -27,6 +28,7 @@ public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
 	
+	void keyPressEvent(QKeyEvent *event);
 	void mousePressEvent(QMouseEvent *event);
 	void mouseMoveEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);

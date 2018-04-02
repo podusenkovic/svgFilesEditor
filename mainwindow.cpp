@@ -3,6 +3,11 @@
 
 #define STARTWITH "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg version = \"1.1\"\n     baseProfile=\"full\"\n     xmlns = \"http://www.w3.org/2000/svg\"\n     xmlns:xlink = \"http://www.w3.org/1999/xlink\"\n     xmlns:ev = \"http://www.w3.org/2001/xml-events\"\n     height = \"%1px\"  width = \"%2px\">\n"
 
+void swapFigures(Figure* a, Figure* b){
+	Figure *temp = a;
+	a = b;
+	b = temp;	
+}
 
 double Distance(QPoint a, QPoint b){
 	double x = a.x() - b.x();
@@ -62,6 +67,22 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event){
+	if (event->key() == Qt::Key_Up || event->key() == Qt::Key_Down){
+		if (movingAnything == 2){
+			if (movingIndex != 0 && event->key() == Qt::Key_Down){
+				figures.move(movingIndex, movingIndex - 1);
+				movingIndex--;
+			}
+			if (movingIndex != figures.size() - 1 && event->key() == Qt::Key_Up){
+				figures.move(movingIndex, movingIndex + 1);
+				movingIndex++;
+			}
+		}
+	}
+	this->update();
 }
 
 
