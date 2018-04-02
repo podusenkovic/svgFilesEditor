@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WidgetForButtons</class>
+ <widget class="QWidget" name="WidgetForButtons">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>224</width>
+    <height>310</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="button_line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Line</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">allButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="button_rect">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Rectangle</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">allButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="button_circle">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>30</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Circle</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">allButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="button_move">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>60</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Move</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">allButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="button_color">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Choose color</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>100</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>more</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="allButtons"/>
+ </buttongroups>
+</ui>
