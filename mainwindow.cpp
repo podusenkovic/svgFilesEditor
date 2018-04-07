@@ -259,7 +259,7 @@ void MainWindow::savePictureToFile(){
 	QFile file("picture.svg");
 	file.open(QIODevice::WriteOnly);
 	QTextStream fileStream(&file);
-	fileStream << startWith.arg(this->size().width()).arg(this->size().height()) + "\n";
+	fileStream << startWith.arg(this->size().height()).arg(this->size().width()) + "\n";
 	for (int i = 0; i < figures.size(); i++){
 		if (figures[i]->type == "line")
 			fileStream << QString("\n <line x1=\"%1\" y1=\"%2\" "
