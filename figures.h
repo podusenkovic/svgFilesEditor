@@ -64,9 +64,25 @@ public:
 		p1(p_1), p2(p_2){}
 	
 	void draw(QPainter *painter){
-		painter->setPen(QPen(color,3));
+		painter->setPen(QPen(color, 3));
 		painter->drawLine(QLine(p1,p2));
 	}
 };
+
+
+class Polygon : public Figure{
+	friend class MainWindow;
+	QVector<QPoint> points;
+public:
+	Polygon(QVector<QPoint> _points, QColor col) : Figure("polygon", col),
+		points(_points){}
+	
+	void draw(QPainter *painter){
+		painter->setPen(QPen(color, 3));
+		painter->setBrush(QBrush(color));
+		painter->drawPolygon(points);
+	}
+};
+
 
 #endif // FIGURES_H

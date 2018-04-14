@@ -27,6 +27,8 @@ void WidgetForButtons::buttonPressed(QAbstractButton* but){
 		emit circlePressed();
 	else if (but->text() == "Move")
 		emit movePressed();
+	else if (but->text() == "Polygon")
+		emit polyPressed();
 	
 }
 

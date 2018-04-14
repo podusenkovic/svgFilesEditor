@@ -90,11 +90,27 @@
     <string>Choose color</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="button_poly">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>100</y>
+     <x>20</x>
+     <y>90</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Polygon</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">allButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>90</y>
      <width>80</width>
      <height>21</height>
     </rect>

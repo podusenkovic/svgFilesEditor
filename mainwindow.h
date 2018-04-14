@@ -37,6 +37,7 @@ private slots:
 	void startDrawLine();
 	void startDrawRect();
 	void startDrawCircle();
+	void startDrawPoly();
 	void startMovingAction();
 	
 	void chooseColor();
@@ -53,6 +54,7 @@ private:
 	short makingLine;
 	short makingRect;
 	short makingCircle;
+	short makingPoly;
 	short movingAnything;
 	
 	int movingIndex;
@@ -64,6 +66,7 @@ private:
 	QPoint startPoint;
 	
 	QVector<Figure*> figures;
+	QVector<QPoint> points;
 	
 	QString startWith;
 };

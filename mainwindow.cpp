@@ -52,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
 			this, SLOT(startDrawCircle()));
 	connect(buttons, SIGNAL(movePressed()), 
 			this, SLOT(startMovingAction()));
+	connect(buttons, SIGNAL(polyPressed()),
+			this, SLOT(startDrawPoly()));
 	
 	connect(buttons, SIGNAL(chooseColor()),
 			this, SLOT(chooseColor()));
@@ -144,11 +146,26 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 	}
 	else if (makingCircle == 2){
 		int radius = Distance(startPoint, event->pos());
-		//circlesColor.push_back(mainColor);
 		figures.push_back(new Circle(startPoint, radius, mainColor));
 		makingCircle = 0;
 		buttons->show();
 		this->releaseMouse();
+	}
+	//-----------------------------------------
+	//--------------POLYGON--------------------
+	if (makingPoly == 1){
+		points.push_back(event->pos());
+		makingPoly = 2;
+	}
+	else if (makingPoly == 2){
+		if (event->button() == Qt::LeftButton)
+			points.push_back(event->pos());
+		else {
+			figures.push_back(new Polygon(points, mainColor));
+			makingPoly = 0;
+			buttons->show();
+			this->releaseMouse();
+		}
 	}
 	//-----------------------------------------
 	//--------------MOVING---------------------
@@ -218,6 +235,18 @@ void MainWindow::paintEvent(QPaintEvent *event){
 		painter.drawEllipse(startPoint, radius, radius);
 	}
 	//-----------------------------------------
+	//-------------POLYGON---------------------
+	qDebug() << makingPoly;
+	if (makingPoly == 1){
+		painter.drawEllipse(pos,3,3);
+	}
+	else if (makingPoly == 2){
+		QVector<QPoint> temp = points;
+		temp.push_back(pos);
+		painter.drawPolygon(temp);
+	}
+	//-----------------------------------------
+	
 }
 
 
@@ -241,6 +270,13 @@ void MainWindow::startDrawCircle(){
 	this->grabMouse();
 	this->setMouseTracking(true);
 	makingCircle = 1;
+}
+
+void MainWindow::startDrawPoly(){
+	buttons->hide();
+	this->grabMouse();
+	this->setMouseTracking(true);
+	makingPoly = 1;
 }
 
 void MainWindow::startMovingAction(){
@@ -290,6 +326,17 @@ void MainWindow::savePictureToFile(){
 						  .arg(((Circle*)figures[i])->rad)
 						  .arg(figures[i]->getColor())
 						  .arg(figures[i]->getColor());
+		else if(figures[i]->type == "polygon"){
+			fileStream << QString("\n <polygon stroke-width=\"1\" "
+								  "stroke=\"rgb(%1)\" fill = \"rgb(%2)\" points=\"")
+						  .arg(figures[i]->getColor())
+						  .arg(figures[i]->getColor());
+			for (int j = 0; j < ((Polygon*)figures[i])->points.size(); j++)
+				fileStream << QString("%1,%2 ")
+							  .arg(((Polygon*)figures[i])->points[j].x())
+							  .arg(((Polygon*)figures[i])->points[j].y());	
+			fileStream << QString("\"/>\n");
+		}
 	}
 	fileStream << "\n</svg>";
 }
@@ -305,7 +352,6 @@ void MainWindow::chooseColor(){
 void MainWindow::setColor(){
 	colorsWin->hide();
 	mainColor = colorsWin->getColor();
-	qDebug() << "got new color";
 }
 
 void MainWindow::clearScreen(){

@@ -19,7 +19,7 @@ signals:
 	void rectPressed();
 	void circlePressed();
 	void movePressed();
-	
+	void polyPressed();
 	void chooseColor();
 
 private slots:
